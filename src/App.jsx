@@ -98,7 +98,7 @@ export default function App() {
         let count = await wavePortalContract.getTotalWaves()  
         console.log("Retrieve total wave count...", count.toNumber())
 
-        const waveTxn = await wavePortalContract.wave("this is a message")
+        const waveTxn = await wavePortalContract.wave(message)
         console.log("Mining...", waveTxn)
 
         await waveTxn.wait()
@@ -129,11 +129,13 @@ export default function App() {
         </div>
 
         <div className="bio">
-        I am Meezy, this is my first Dapp application. Connect your Ethereum wallet and wave at me!
+        I am Meezy, this is my first Dapp application. Connect your Ethereum wallet and send me message!
         </div>
+        <input type="text" className="message" value={message} placeholder="Send me a message here!" onChange={(e) => setMessage(e.target.value)}  />
         <button className="waveButton" onClick={wave}>
-          Wave at Me
+          Send me message !!
         </button>
+
         {!currentAccount && (
           <button className="waveButton" onClick={connectWallet}>
             Connect Wallet
